@@ -1,4 +1,3 @@
-
 from huggingface_hub import InferenceClient
 from torch import nn
 from transformers import AutoModel, AutoProcessor, AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
@@ -126,8 +125,8 @@ class Joy_caption_load:
         self.pipeline.image_adapter = adjusted_adapter
     
     def clearCache(self):
-         if self.pipeline != None:
-              self.pipeline.clearCache()
+        if self.pipeline != None:
+            self.pipeline.clearCache()
 
     def gen(self,model):
         if self.model == None or self.model != model or self.pipeline == None:
