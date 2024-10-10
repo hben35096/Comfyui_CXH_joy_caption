@@ -23,7 +23,8 @@ def fixed_get_imports(filename: str | os.PathLike) -> list[str]:
     if not str(filename).endswith("modeling_florence2.py"):
         return get_imports(filename)
     imports = get_imports(filename)
-    imports.remove("flash_attn")
+    if "flash_attn" in imports:
+        imports.remove("flash_attn")
     return imports
 
 
@@ -199,8 +200,8 @@ class CXH_Florence2Run:
         }
         task_prompt = prompts.get(task, '<OD>')
 
-        # if (task not in ['referring_expression_segmentation', 'caption_to_phrase_grounding', 'docvqa']) and text_input:
-        #     raise ValueError("Text input (prompt) is only supported for 'referring_expression_segmentation', 'caption_to_phrase_grounding', and 'docvqa'")
+        if (task not in ['referring_expression_segmentation', 'caption_to_phrase_grounding', 'docvqa']) and text_input:
+            raise ValueError("Text input (prompt) is only supported for 'referring_expression_segmentation', 'caption_to_phrase_grounding', and 'docvqa'")
 
         if text_input != "":
             prompt = task_prompt + " " + text_input
