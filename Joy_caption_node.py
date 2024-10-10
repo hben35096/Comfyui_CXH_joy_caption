@@ -214,6 +214,6 @@ class Joy_caption:
         r = caption.strip()
 
         if cache == False:
-           joy_pipeline.parent.clearCache()  
+            joy_pipeline.parent.clearCache()  
 
         return (r,)
